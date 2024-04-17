@@ -1,3 +1,5 @@
+"""restrict to the screen
+before moving check if not at top"""
 import pygame,sys
 
 pygame.init()
@@ -21,13 +23,17 @@ while running:
     
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        chary -= charspeed
+        if chary != 0:
+            chary -= charspeed
     if keys[pygame.K_s]:
-        chary += charspeed
+        if chary != screenheight - charsize:
+            chary += charspeed
     if keys[pygame.K_a]:
-        charx -= charspeed
+        if charx != 0:
+            charx -= charspeed
     if keys[pygame.K_d]:
-        charx += charspeed
+        if charx != screenwidth - charsize:
+            charx += charspeed
     
     screen.fill((bgcolour))
     
